@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'CoFo Sans Mono';
+    src: url('CoFoSansMono-Regular.woff2') format('woff2'),
+        url('CoFoSansMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CoFo Sans Mono';
+    src: url('CoFoSansMono-Medium.woff2') format('woff2'),
+        url('CoFoSansMono-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CoFo Sans Mono';
+    src: url('CoFoSansMono-Black.woff2') format('woff2'),
+        url('CoFoSansMono-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CoFo Sans Mono';
+    src: url('CoFoSansMono-Bold.woff2') format('woff2'),
+        url('CoFoSansMono-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

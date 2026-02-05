@@ -1,9 +1,10 @@
 // import Image from 'next/image';
 import FloatingItems from './components/FloatingItems';
 import Hero from './components/Hero';
-import CursorTrail from './components/CursorTrail';
+import CursorTrail from './components/ver/CursorTrail';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import H3DButton from './components/ver/H3DButton';
 
 export default function Page() {
   return (

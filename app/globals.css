@@ -1,28 +1,95 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --h3-white: #ffffff;
+  --h3-black: #1b1b1b;
+  --h3-mint: #84fdba;
+  --h3-off-white: #f0f0f0;
+  --h3-silver: #d9d9d9;
+  --h3-steel: #7d7d7d;
+  --h3-roti: #d8b665;
+  --h3-lavander: #d1b0ea;
+
+  --typography-headline-2xl-text: 96px;
+  --typography-headline-xl-text: 64px;
+  --typography-headline-lg-text: 52px;
+  --typography-headline-md-text: 40px;
+  --typography-headline-sm-text: 36px;
+  --typography-headline-xs-text: 32px;
+  --typography-body-2xl-text: 28px;
+  --typography-body-xl-text: 24px;
+  --typography-body-lg-text: 20px;
+  --typography-body-md-text: 18px;
+  --typography-body-sm-text: 15px;
+  --typography-body-xs-text: 13px;
+  --typography-body-xs-height: 15px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--h3-white);
+  --color-foreground: var(--h3-black);
+
+  --color-h3-white: var(--h3-white);
+  --color-h3-black: var(--h3-black);
+  --color-h3-mint: var(--h3-mint);
+  --color-h3-off-white: var(--h3-off-white);
+  --color-h3-silver: var(--h3-silver);
+  --color-h3-steel: var(--h3-steel);
+  --color-h3-roti: var(--h3-roti);
+  --color-h3-lavander: var(--h3-lavander);
+
+  --color-h3-text: var(--h3-black);
+  --color-h3-text-foreground: var(--h3-white);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @font-face {
-  font-family: 'CoFoSansMono';
-  src: url('/fonts/CoFoSansMono-Regular-Trial.otf') format('opentype');
+  font-family: 'CoFo Sans Mono';
+  src:
+    url('/fonts/cofosansmono/CoFoSansMono-Regular.woff2') format('woff2'),
+    url('/fonts/cofosansmono/CoFoSansMono-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
+  font-family: 'CoFo Sans Mono';
+  src:
+    url('/fonts/cofosansmono/CoFoSansMono-Medium.woff2') format('woff2'),
+    url('/fonts/cofosansmono/CoFoSansMono-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoFo Sans Mono';
+  src:
+    url('/fonts/cofosansmono/CoFoSansMono-Bold.woff2') format('woff2'),
+    url('/fonts/cofosansmono/CoFoSansMono-Bold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoFo Sans Mono';
+  src:
+    url('/fonts/cofosansmono/CoFoSansMono-Black.woff2') format('woff2'),
+    url('/fonts/cofosansmono/CoFoSansMono-Black.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Pragmatica';
-  src: url('/fonts/pragmatica_book.otf') format('opentype');
+  src:
+    url('/fonts/pragmatica/PragmaticaBook-Reg.woff2') format('woff2'),
+    url('/fonts/pragmatica/PragmaticaBook-Reg.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -64,6 +131,15 @@ img {
   line-height: 90%;
 }
 
+.headline-sm-text {
+  font-family: 'Pragmatica', sans-serif;
+  font-size: var(--typography-headline-sm-text, 36px);
+  letter-spacing: -1.2px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 90%;
+}
+
 .headline-xs-text {
   font-family: 'Pragmatica', sans-serif;
   font-size: var(--typography-headline-xs-text, 64px);
@@ -73,8 +149,17 @@ img {
   line-height: 90%;
 }
 
+.body-xl {
+  font-size: var(--typography-body-xl-text, 24px);
+  letter-spacing: -0.48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  font-variant-ligatures: none;
+}
+
 .body-mono-xl {
-  font-family: 'CoFoSansMono', monospace;
+  font-family: 'CoFo Sans Mono', monospace;
   font-size: var(--typography-body-xl-text, 24px);
   letter-spacing: -1.2px;
   font-style: normal;
@@ -83,32 +168,38 @@ img {
   font-variant-ligatures: none;
 }
 
-.body-xl {
-  font-size: var(--typography-body-xl-text, 24px);
-  letter-spacing: -0.48px;
+.body-mono-lg {
+  font-family: 'CoFo Sans Mono', monospace;
+  font-size: var(--typography-body-lg-text, 20px);
+  letter-spacing: -1.2px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
   font-variant-ligatures: none;
 }
 
-.headline-2xl-text,
-.headline-xl-text,
-.body-mono-xl,
 .body-mono-md {
-}
-
-.body-xl {
-  font-size: var(--typography-body-xl-text, 24px);
-  letter-spacing: -0.48px;
+  font-family: 'CoFo Sans Mono', monospace;
+  font-size: var(--typography-body-md-text, 18px);
+  line-height: var(--typography-body-md-height, 22px);
+  letter-spacing: -0.44px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%;
+  font-variant-ligatures: none;
+}
+
+.body-mono-strong-md {
+  font-family: 'CoFo Sans Mono';
+  font-size: var(--typography-body-md-text, 18px);
+  line-height: var(--typography-body-md-height, 22px);
+  letter-spacing: -0.3px;
+  font-style: normal;
+  font-weight: 500;
   font-variant-ligatures: none;
 }
 
 .body-mono-sm {
-  font-family: 'CoFoSansMono', monospace;
+  font-family: 'CoFo Sans Mono';
   font-size: var(--typography-body-sm-text, 18px);
   line-height: var(--typography-body-sm-height, 22px);
   letter-spacing: -0.44px;
@@ -117,8 +208,18 @@ img {
   font-variant-ligatures: none;
 }
 
+.body-mono-strong-sm {
+  font-family: 'CoFo Sans Mono';
+  font-size: var(--typography-body-sm-text, 18px);
+  line-height: var(--typography-body-sm-height, 22px);
+  letter-spacing: -0.44px;
+  font-style: normal;
+  font-weight: 500;
+  font-variant-ligatures: none;
+}
+
 .body-mono-xs {
-  font-family: 'CoFoSansMono', monospace;
+  font-family: 'CoFo Sans Mono', monospace;
   font-size: var(--typography-body-xs-text, 18px);
   line-height: var(--typography-body-xs-height, 22px);
   letter-spacing: -0.44px;
@@ -127,21 +228,14 @@ img {
   font-variant-ligatures: none;
 }
 
-:root {
-  --typography-headline-2xl-text: 96px;
-  --typography-headline-xl-text: 64px;
-  --typography-headline-lg-text: 52px;
-  --typography-headline-md-text: 40px;
-  --typography-headline-sm-text: 36px;
-  --typography-headline-xs-text: 32px;
-  --typography-body-2xl-text: 28px;
-  --typography-body-xl-text: 24px;
-  --typography-body-lg-text: 20px;
-  --typography-body-md-text: 18px;
-  --typography-body-sm-text: 15px;
-  --typography-body-xs-text: 13px;
-  --typography-body-xs-height: 15px;
-  --brand-black: #121212;
+.body-mono-strong-xs {
+  font-family: 'CoFo Sans Mono', monospace;
+  font-size: var(--typography-body-xs-text, 18px);
+  line-height: var(--typography-body-xs-height, 22px);
+  letter-spacing: -0.44px;
+  font-style: normal;
+  font-weight: 500;
+  font-variant-ligatures: none;
 }
 
 @media (max-width: 1024px) {

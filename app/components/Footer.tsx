@@ -1,78 +1,89 @@
 'use client';
+import Image from 'next/image';
+import PreFooter from './FooterCTA';
+
+const links = {
+  legal: [
+    { href: '/user-agreement', label: 'Лицензионное соглашение' },
+    { href: '/privacy-policy-agreement', label: 'Политика конфиденциальности' },
+    { href: '/cookie-policy', label: 'Политика использования файлов Cookie' },
+    { href: '/legal-entity-agreement', label: 'Оферта для юридических лиц' },
+  ],
+  support: [
+    { href: 'mailto:world@h3llo.cloud', label: 'Центр помощи' },
+    {
+      href: 'https://status.h3llo.cloud',
+      label: 'Статус системы',
+      external: true,
+    },
+  ],
+};
+
+const linkClass = 'text-h3-white hover:text-h3-mint transition-colors';
 
 export default function Footer() {
   return (
-    <footer className="text-white w-screen px-4">
-      <div className="bg-black px-5 p-10 rounded-t-xl">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 ">
-          {/* Логотип и описание */}
-          <div className="space-y-10">
-            <p className="headline-xs-text text-white px-2">
+    <footer className="relative w-full bg-h3-black">
+      {/* Видео-фон */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/anim/hand.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Полупрозрачный оверлей для контраста */}
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      {/* PreFooter */}
+      <section className="relative z-10 w-full flex items-center justify-center min-h-[80vh] px-5">
+        <PreFooter />
+      </section>
+
+      {/* Основной Footer */}
+      <div className="relative z-10 px-12 py-12 max-w-[1512px] mx-auto">
+        <div className="grid gap-8 md:grid-cols-[2fr_1fr_1fr]">
+          <div className="space-y-8">
+            <Image src="/img/h3-logo-white.svg" alt="H3" width={120} height={16} priority />
+            <p className="headline-xs-text text-h3-white max-w-md">
               Строим облачный гиперскейлер на максималках
             </p>
           </div>
 
-          {/* Юридическая информация */}
-          <div className="space-y-10">
-            <h4 className="body-lg text-brand-steel">Юридическая информация</h4>
+          <div className="space-y-6">
+            <h4 className="body-lg text-h3-steel">Юридическая информация</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="/user-agreement"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Лицензионное соглашение
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy-policy-agreement"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Политика конфиденциальности
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/cookie-policy"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Политика использования файлов Cookie
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/legal-entity-agreement"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Оферта для юридических лиц
-                </a>
-              </li>
+              {links.legal.map(({ href, label }) => (
+                <li key={href}>
+                  <a href={href} className={linkClass}>
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Поддержка */}
-          <div className="space-y-10">
-            <h4 className="body-lg text-brand-steel">Поддержка</h4>
+          <div className="space-y-6">
+            <h4 className="body-lg text-h3-steel">Поддержка</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="mailto:world@h3llo.cloud"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Центр помощи
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://status.h3llo.cloud"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-white hover:text-brand-mint transition-colors"
-                >
-                  Статус системы
-                </a>
-              </li>
+              {links.support.map(({ href, label, external }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className={linkClass}
+                    {...(external && {
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                    })}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
