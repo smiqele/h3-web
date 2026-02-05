@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
@@ -51,10 +51,10 @@ export default function Header() {
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
-              className="body-mono-strong-sm text-h3-black/80 hover:text-h3-roti transition-colors inline-flex items-center gap-1.5"
+              className="body-mono-strong-sm text-h3-black hover:text-h3-roti transition-colors inline-flex items-center gap-0.5"
             >
               {label}
-              {external && <ExternalLink size={14} strokeWidth={1.5} className="opacity-70" />}
+              {external && <ArrowUpRight size={16} strokeWidth={2} className="opacity-50" />}
             </Link>
           ))}
 
