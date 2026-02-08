@@ -1,25 +1,25 @@
-'use client';
-import Image from 'next/image';
-import PreFooter from './FooterCTA';
+"use client";
+import Image from "next/image";
+import PreFooter from "./FooterCTA";
 
 const links = {
   legal: [
-    { href: '/user-agreement', label: 'Лицензионное соглашение' },
-    { href: '/privacy-policy-agreement', label: 'Политика конфиденциальности' },
-    { href: '/cookie-policy', label: 'Политика использования файлов Cookie' },
-    { href: '/legal-entity-agreement', label: 'Оферта для юридических лиц' },
+    { href: "/user-agreement", label: "Лицензионное соглашение" },
+    { href: "/privacy-policy-agreement", label: "Политика конфиденциальности" },
+    { href: "/cookie-policy", label: "Политика использования файлов Cookie" },
+    { href: "/legal-entity-agreement", label: "Оферта для юридических лиц" },
   ],
   support: [
-    { href: 'mailto:world@h3llo.cloud', label: 'Центр помощи' },
+    { href: "mailto:world@h3llo.cloud", label: "Центр помощи" },
     {
-      href: 'https://status.h3llo.cloud',
-      label: 'Статус системы',
+      href: "https://status.h3llo.cloud",
+      label: "Статус системы",
       external: true,
     },
   ],
 };
 
-const linkClass = 'text-h3-white hover:text-h3-mint transition-colors';
+const linkClass = "text-h3-white hover:text-h3-mint transition-colors";
 
 export default function Footer() {
   return (
@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-black/50"></div>
 
       {/* PreFooter */}
-      <section className="relative z-10 w-full flex items-center justify-center min-h-[80vh] px-5">
+      <section className="relative z-10 w-full flex items-center justify-center h-[80vh] px-5">
         <PreFooter />
       </section>
 
@@ -48,7 +48,13 @@ export default function Footer() {
       <div className="relative z-10 px-12 py-12 max-w-[1512px] mx-auto">
         <div className="grid gap-8 md:grid-cols-[2fr_1fr_1fr]">
           <div className="space-y-8">
-            <Image src="/img/h3-logo-white.svg" alt="H3" width={120} height={16} priority />
+            <Image
+              src="/img/h3-logo-white.svg"
+              alt="H3"
+              width={120}
+              height={16}
+              priority
+            />
             <p className="headline-xs-text text-h3-white max-w-md">
               Строим облачный гиперскейлер на максималках
             </p>
@@ -76,8 +82,8 @@ export default function Footer() {
                     href={href}
                     className={linkClass}
                     {...(external && {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
+                      target: "_blank",
+                      rel: "noopener noreferrer",
                     })}
                   >
                     {label}
@@ -89,7 +95,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6">
-          <p className="body-mono-sm text-white">h3llo.cloud © 2025 Все права защищены</p>
+          <p className="body-mono-sm text-white">
+            h3llo.cloud © 2025 Все права защищены
+          </p>
         </div>
       </div>
     </footer>

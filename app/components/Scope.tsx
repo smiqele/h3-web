@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type Offset = { x: number; y: number };
 
@@ -26,8 +26,8 @@ function useAdaptiveOffset(offset: Offset): Offset {
     };
 
     update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, [offset]);
 
   return value;
@@ -38,18 +38,18 @@ function FloatingBlock({
   label,
   offset,
   delay = 0,
-  align = 'center',
+  align = "center",
 }: {
   imageSrc: string;
   label: string;
   offset: Offset;
   delay?: number;
-  align?: 'start' | 'center' | 'end';
+  align?: "start" | "center" | "end";
 }) {
   const adaptiveOffset = useAdaptiveOffset(offset);
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full py-40 flex items-center justify-center">
       <motion.div
         initial={{
           x: adaptiveOffset.x,
@@ -63,7 +63,7 @@ function FloatingBlock({
         }}
         transition={{
           duration: 0.5,
-          ease: 'easeOut',
+          ease: "easeOut",
           delay,
         }}
         className={`flex flex-col items-${align}`}
@@ -100,8 +100,8 @@ export default function HeroGridFloating() {
         <motion.h1
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="text-center headline-xl-text"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center headline-lg-text"
         >
           драйв простых решений
         </motion.h1>
@@ -109,17 +109,17 @@ export default function HeroGridFloating() {
         <motion.h1
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.35, delay: 0.15, ease: 'easeOut' }}
+          transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
           className="text-center body-mono-lg"
         >
-          Обеспечиваем полную защиту облака на всех уровнях, соблюдая индустриальные стандарты и
-          законодательные требования.
+          Обеспечиваем полную защиту облака на всех уровнях, соблюдая
+          индустриальные стандарты и законодательные требования.
         </motion.h1>
       </div>
 
       {/* ───────────── Третья строка ───────────── */}
       <FloatingBlock
-        label="5 контуров  физической защиты"
+        label="5 контуров физической защиты"
         imageSrc="/img/kiss.gif"
         offset={{ x: 150, y: 0 }}
         delay={0.3}

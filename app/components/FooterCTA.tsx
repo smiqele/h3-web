@@ -1,7 +1,7 @@
-'use client';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Button } from './ui/Button';
+"use client";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Button } from "./ui/Button";
 
 export default function PreFooter() {
   return (
@@ -11,8 +11,8 @@ export default function PreFooter() {
         <motion.h1
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="text-center text-white headline-xl-text"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center text-white headline-lg-text"
         >
           попробуй прямо сейчас
         </motion.h1>
@@ -20,7 +20,7 @@ export default function PreFooter() {
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.35, delay: 0.3, ease: 'easeOut' }}
+          transition={{ duration: 0.35, delay: 0.3, ease: "easeOut" }}
           className="mt-12 flex flex-col gap-4 items-center"
         >
           <Button size="md" color="mint">

@@ -5,22 +5,15 @@ import { motion } from "framer-motion";
 import { cardsData } from "./CardStackData";
 
 const cardHeight = 400;
+const cardCount = cardsData.length;
 const stickyTop = 60;
-const scaleMin = 0.95;
-const SCALE_DISTANCE = 200;
+const scaleMin = 0.85;
+const scaleDelay = 300;
 
 export default function CardStack() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lastStickyScrollY = useRef<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
-
-  const [windowHeight, setWindowHeight] = useState(0);
-
-  useEffect(() => {
-    setWindowHeight(window.innerHeight);
-  }, []);
-
-  const cardCount = cardsData.length;
-  const lastIndex = cardCount - 1;
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -28,24 +21,56 @@ export default function CardStack() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const getScale = (index: number) => {
-    if (index === lastIndex) return 1;
+  const lastIndex = cardCount - 1;
+  const lastEl = cardRefs.current[lastIndex];
 
-    const stickyPoint = index * cardHeight + windowHeight - stickyTop; // момент начала scale
-    const progress = Math.min(
-      Math.max((scrollY - stickyPoint) / SCALE_DISTANCE, 0),
-      1,
-    );
+  /* ---------- stack translate ---------- */
+  let stackTranslateY = 0;
+  if (lastEl) {
+    const rect = lastEl.getBoundingClientRect();
+    if (rect.top <= stickyTop) {
+      if (lastStickyScrollY.current === null) {
+        lastStickyScrollY.current = scrollY;
+      }
+      stackTranslateY = -(scrollY - lastStickyScrollY.current);
+    } else {
+      lastStickyScrollY.current = null;
+    }
+  }
 
-    return 1 - progress * (1 - scaleMin); // 1 → scaleMin
+  /* ---------- scale ---------- */
+  const getScale = (el: HTMLDivElement | null, index: number) => {
+    if (!el || index === lastIndex) return 1;
+
+    const rect = el.getBoundingClientRect();
+
+    if (rect.top > stickyTop) {
+      (el as any)._stickyY = undefined;
+      return 1;
+    }
+
+    if ((el as any)._stickyY === undefined) {
+      (el as any)._stickyY = scrollY;
+    }
+
+    const delta = scrollY - (el as any)._stickyY - scaleDelay;
+    const progress = Math.min(Math.max(delta / cardHeight, 0), 1);
+
+    const step = (1 - scaleMin) / (cardCount - 1);
+    const targetScale = 1 - step * (lastIndex - index);
+
+    return 1 - progress * (1 - targetScale);
   };
 
+  /* ---------- render ---------- */
   return (
     <div className="w-full flex justify-center">
       <motion.div
         className="relative w-full"
         style={{
           height: cardHeight * (cardCount + 1),
+          transform: `translateY(${stackTranslateY}px)`,
+          willChange: "transform",
         }}
         initial={{ opacity: 1, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +78,8 @@ export default function CardStack() {
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
         {cardsData.map((card, index) => {
-          const scale = getScale(index);
+          const el = cardRefs.current[index];
+          const scale = getScale(el, index);
 
           return (
             <div
@@ -63,10 +89,10 @@ export default function CardStack() {
               style={{
                 top: stickyTop,
                 height: cardHeight,
-                transform: `scale(${scale})`,
                 transformOrigin: "top center",
-                zIndex: index,
                 willChange: "transform",
+                zIndex: index,
+                transform: `scale(${scale})`,
               }}
             >
               <div
