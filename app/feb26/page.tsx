@@ -1,9 +1,9 @@
 // import Image from 'next/image';
-import Hero from "../components/Hero";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import CardStack from "../components/CardStack";
-import Scope from "../components/Scope";
+import Hero from '../components/Hero';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import CardStack from '../components/CardStack';
+import Scope from '../components/Scope';
 
 export default function Page() {
   return (
@@ -19,7 +19,7 @@ export default function Page() {
 
         <CardStack />
 
-        <section className="h-[90vh] w-full flex items-center justify-center">
+        <section className="h-[100vh] w-full flex items-center justify-center">
           <Scope />
         </section>
 

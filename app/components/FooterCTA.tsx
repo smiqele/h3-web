@@ -1,36 +1,61 @@
-"use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Button } from "./ui/Button";
+'use client';
+import { motion } from 'framer-motion';
 
 export default function PreFooter() {
   return (
-    <section className="w-full h-full flex justify-center items-center overflow-hidden">
+    <section className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      {/* Видео-фон */}
+      <video
+        className="absolute inset-0 w-full max-w-[1400px] h-full object-cover mx-auto"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/anim/hand.mp4" type="video/mp4" />
+      </video>
+
+      {/* Оверлей */}
+      <div className="absolute inset-0 bg-h3-black/30" />
+
       {/* Контент */}
-      <div className="flex flex-col justify-center items-center py-24 px-5">
+      <motion.div
+        className="relative z-10 flex flex-col items-center py-24 px-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.4 }}
+        variants={{
+          hidden: {},
+          visible: {},
+        }}
+      >
         <motion.h1
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center text-white headline-lg-text"
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: { y: 0, opacity: 1 },
+          }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-center text-white headline-xl-text bg-h3-black px-8 py-4"
         >
           попробуй прямо сейчас
         </motion.h1>
 
         <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.35, delay: 0.3, ease: "easeOut" }}
-          className="mt-12 flex flex-col gap-4 items-center"
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: { y: 0, opacity: 1 },
+          }}
+          transition={{ duration: 0.35, delay: 0.25, ease: 'easeOut' }}
+          className="flex w-full"
         >
-          <Button size="md" color="mint">
+          <div className="bg-h3-mint w-full text-h3-black body-mono-strong-sm px-4 py-4 flex items-center justify-center">
             запустить виртуальную машину
-          </Button>
-          <Button size="xs" color="black">
+          </div>
+          <div className="bg-h3-black w-full text-h3-white body-mono-strong-sm px-4 py-4 flex items-center justify-center">
             или встретить судьбу
-          </Button>
+          </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
